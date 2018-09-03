@@ -3,7 +3,7 @@
 A Simple set of REST APIs built as part of Blue Harvest assignment. 
 
 ## Design 
-This appliction is implemented using Spring boot. Key design element is the seperation of concern between the REST API ( Spring controllers ), Pojo service layer and the Data access layer built using JPA and Spring data. 
+This application is implemented using Spring boot. Key design element is the seperation of concern between the REST API ( Spring controllers ), Pojo service layer and the Data access layer built using JPA and Spring data. 
 The source code have sufficient Test coverage using JUnit / Spring based test harness.
 
 ## API Specification
