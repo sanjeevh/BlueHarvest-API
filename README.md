@@ -24,7 +24,7 @@ the base URL of the API is - http://blueharvestapi-env.gdfm5euqpu.us-east-1.elas
 ## UI 
 User Interface to easily play around with the APIs is available at - https://app.swaggerhub.com/apis/sanjeevh/BlueHarvest/1.0.0 which is intergrated with the APIs deployed on the AWS. 
 
-To execute the API , Please use the "try-out" feature on above page as shown in below picture :
+To execute the API , Please use the "try-out" feature on above page.
 
 
 
