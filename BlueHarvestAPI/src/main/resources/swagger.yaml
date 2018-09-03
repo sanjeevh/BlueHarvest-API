@@ -1,0 +1,158 @@
+swagger: "2.0"
+info:
+  description: "This is API spec which is part of the API assignment from blue harvest."
+  version: "1.0.0"
+  title: "Account servicing - Blue Harvest Bank Inc"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "sanjeev.handa@capgemini.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "blueharvestapi-env.gdfm5euqpu.us-east-1.elasticbeanstalk.com"
+basePath: ""
+tags:
+- name: "Account"
+  description: "Account and Transaction API "
+  externalDocs:
+    description: "Path to Github"
+    url: "http://swagger.io"
+- name: "Transaction"
+  description: "Path to Github"
+schemes:
+- "http"
+paths:
+  /accounts:
+    post:
+      tags:
+      - "Account"
+      summary: "Add a new Account to the existing customer who is identified by a customer ID"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Account request object "
+        required: true
+        schema:
+          $ref: "#/definitions/AccountRequest"
+      responses:
+        400:
+          description: "Invalid input"
+        201:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Account"
+  /customers/{customerID}:
+    get:
+      tags:
+      - "customer"
+      summary: "get details of a Bank customer"
+      description: "provides personal details and transactions of all the account held by this customer with the bank"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "customerID"
+        in: "path"
+        description: "customer ID with the Bank "
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+              $ref: "#/definitions/Customer"
+        400:
+          description: "Invalid customer ID"
+  /customers:
+    get:
+      tags:
+      - "customers"
+      summary: "get details of all the Bank customers"
+      description: "provides personal details and transactions of all the account held by all the customers with the bank"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items :
+              $ref: "#/definitions/Customer"
+        500:
+          description: "internal server error"
+definitions:
+  AccountRequest:
+    type: "object"
+    required: 
+    - "customerID"
+    properties:
+      customerID:
+        type: "integer"
+        format: "int64"
+      initialCredit:
+        type: "number"
+        format: "float"
+  Account:
+    type: "object"
+    properties:
+      accountID:
+        type: "integer"
+        format: "int64"
+      customerID:
+        type: "integer"
+        format: "int64"
+      balance:
+        type: "number"
+        format: "float"
+  Customer:
+    type: "object"
+    properties:
+      customerID:
+        type: "integer"
+        format: "int64"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      accounts:
+        type: "array"
+        items :
+          $ref  : "#/definitions/Account"
+      transactions:
+        type: "array"
+        items :
+          $ref: "#/definitions/Transaction"  
+  Transaction:
+    type: "object"
+    required: 
+    - "accountID"
+    - "amount"
+    - "transactionType"
+    properties:
+      transactionID:
+        type: "integer"
+        format: "int64"    
+      accountID:
+        type: "integer"
+        format: "int64"
+      customerID:
+        type: "integer"
+        format: "int64"        
+      amount:
+        type: "number"
+        format: "float"
+      transactionDate:
+        type: "string"
+      transactionType:
+        type: "string"
+        enum:
+        - "debit"
+        - "credit"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
