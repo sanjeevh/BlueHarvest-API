@@ -1,21 +1,18 @@
-name: Hello Self Hosted
+name: Hello World
 
 on:
   workflow_dispatch:
 
 jobs:
   hello:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Hello
+      - name: Say Hello
         run: |
-          echo "Hello from my self-hosted runner!"
-          echo "Current user: $(whoami)"
+          echo "Hello from GitHub Actions!"
+          echo "User: $(whoami)"
           echo "Hostname: $(hostname)"
-          echo "Operating System:"
           uname -a
-          echo "Current Directory:"
           pwd
-          echo "Date:"
           date
