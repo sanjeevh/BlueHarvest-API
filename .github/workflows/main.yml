@@ -1,18 +1,34 @@
-name: Hello World
+name: Hello Self Hosted
 
 on:
   workflow_dispatch:
+
+  push:
+    branches:
+      - main
 
 jobs:
   hello:
     runs-on: self-hosted
 
     steps:
-      - name: Say Hello
+      - uses: actions/checkout@v4
+
+      - name: Hello from my Mac
         run: |
-          echo "Hello from GitHub Actions!"
-          echo "User: $(whoami)"
+          echo "================================="
+          echo "Hello from my self-hosted runner!"
+          echo "Runner Name: $RUNNER_NAME"
+          echo "Runner OS: $RUNNER_OS"
+          echo "Runner Arch: $RUNNER_ARCH"
+          echo "Repository: $GITHUB_REPOSITORY"
+          echo "Branch: $GITHUB_REF_NAME"
+          echo "Commit: $GITHUB_SHA"
+          echo "Workflow: $GITHUB_WORKFLOW"
+          echo "Triggered By: $GITHUB_EVENT_NAME"
+          echo "Actor: $GITHUB_ACTOR"
           echo "Hostname: $(hostname)"
-          uname -a
-          pwd
-          date
+          echo "User: $(whoami)"
+          echo "Working Directory: $(pwd)"
+          echo "Current Time: $(date)"
+          echo "================================="
