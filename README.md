@@ -1,6 +1,6 @@
 # BlueHarvest API
 
-A Simple set of REST APIs built as part of Blue Harvest assignment. 
+A Simple set of REST APIs built as part of the Blue Harvest assignment. 
 
 ## Design 
 This application is implemented using Spring boot. Key design element is the seperation of concern between the REST API ( Spring controllers ), Pojo service layer and the Data access layer built using JPA and Spring data. 
